@@ -82,7 +82,7 @@ RUN sudo update-rc.d nfs-common enable
 RUN sudo mkdir /dungeon
 RUN sudo mkdir -p /run/sendsigs.omit.d
 
-RUN sudo echo "api.theterm.world:/world/dungeon /dungeon nfs auto,nofail,noatime,nolock,intr,tcp,actimeo=1800 0 0" >> /etc/fstab
+RUN sudo echo "api.chompe.rs:/world/dungeon /dungeon nfs auto,nofail,noatime,nolock,intr,tcp,actimeo=1800 0 0" >> /etc/fstab
 
 # Setup call to omnipresence to register new users; update old
 RUN echo "presence" >> /etc/bash.bashrc

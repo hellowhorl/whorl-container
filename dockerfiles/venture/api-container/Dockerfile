@@ -40,37 +40,16 @@ RUN python -m pip install \
   python-dotenv --break-system-packages
 
 # Create a new cli directory, change into it, initialize a new repo, and add a new remote named "origin" with the URL of the "api-services" repository
-RUN mkdir cli
-RUN cd cli
-RUN git init
-RUN git remote add -f origin https://github.com/term-world/api-services.git
+RUN git clone origin https://github.com/hellowhorl/whorl-client
 
-# Enable the sparse checkout feature in Git, which allows you to checkout only a part of a repository
-RUN git config core.sparseCheckout true
-
-# Add "cli/" to the sparse-checkout file, pull from the main branch, change into cli and install the python packages
-RUN echo "cli/" >> .git/info/sparse-checkout
-RUN git pull origin main
-RUN ls
-RUN cd cli && python -m pip install . --break-system-packages
+RUN cd whorl-client && python -m pip install . --break-system-packages
 
 # Define an argument for the GitHub CDN URL (world-container)
-ARG GITHUB_CDN=https://raw.githubusercontent.com/term-world/world-container/main
+ARG GITHUB_CDN=https://raw.githubusercontent.com/hellowhorl/whorl-container/main
 
 # Download a script from the GitHub CDN and append it to the bashrc file, download and execute a script from the GitHub CDN
 RUN curl -fsSL $GITHUB_CDN/scripts/direvents.sh | cat >> /etc/bash.bashrc
 RUN curl -fsSL $GITHUB_CDN/scripts/gginstall.sh | sh
-
-# Download the latest release of the "term-world-theme" and "term-launcher" repositories
-RUN curl -fsSl https://api.github.com/repos/term-world/term-launcher/releases/latest | wget $(jq -r ".assets[].browser_download_url")
-
-RUN wget $GITHUB_CDN/scripts/motd
-
-# Copy the "motd" file to the "/etc/motd" path
-RUN cp motd /etc/motd
-
-# Append a command to display the contents of the "motd" file to the bashrc file
-RUN echo "cat /etc/motd" >> /etc/bash.bashrc
 
 # Install and setup 
 RUN sudo -E apt -y -qq install krb5-user

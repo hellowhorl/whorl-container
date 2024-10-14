@@ -40,7 +40,7 @@ RUN python -m pip install \
   python-dotenv --break-system-packages
 
 # Create a new cli directory, change into it, initialize a new repo, and add a new remote named "origin" with the URL of the "api-services" repository
-RUN git clone origin https://github.com/hellowhorl/whorl-client
+RUN git clone https://github.com/hellowhorl/whorl-client
 
 RUN cd whorl-client && python -m pip install . --break-system-packages
 

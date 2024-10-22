@@ -4,6 +4,10 @@ FROM mcr.microsoft.com/devcontainers/python:3.12-bookworm
 # Set the DEBIAN_FRONTEND environment variable to noninteractive to disable interactive prompts during package installation
 ENV DEBIAN_FRONTEND=noninteractive
 
+# Set environment variables for API host, port values
+ENV API_HOST=""
+ENV API_PORT=""
+
 # Set the system timezone to America/New_York
 RUN echo "America/New_York" > /etc/timezone
 

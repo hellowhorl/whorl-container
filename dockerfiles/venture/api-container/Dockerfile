@@ -65,7 +65,7 @@ RUN sudo update-rc.d nfs-common enable
 RUN sudo mkdir /universe
 RUN sudo mkdir -p /run/sendsigs.omit.d
 
-RUN sudo echo "api.chompe.rs:/mounts/universe-a /universe nfs auto,nofail,noatime,nolock,intr,tcp,actimeo=1800 0 0" >> /etc/fstab
+RUN sudo echo "warehouse.chompe.rs:/mounts/universe-a /universe nfs auto,nofail,noatime,nolock,intr,tcp,actimeo=1800 0 0" >> /etc/fstab
 
 # Setup call to omnipresence to register new users; update old
 RUN echo "presence" >> /etc/bash.bashrc

@@ -62,10 +62,10 @@ RUN curl -fsSL $GITHUB_CDN/scripts/krb5.conf | cat > /etc/krb5.conf
 # Set up NFS services
 RUN sudo update-rc.d rpcbind enable
 RUN sudo update-rc.d nfs-common enable
-RUN sudo mkdir /dungeon
+RUN sudo mkdir /universe
 RUN sudo mkdir -p /run/sendsigs.omit.d
 
-RUN sudo echo "api.chompe.rs:/world/dungeon /dungeon nfs auto,nofail,noatime,nolock,intr,tcp,actimeo=1800 0 0" >> /etc/fstab
+RUN sudo echo "api.chompe.rs:/mounts/universe-a /universe nfs auto,nofail,noatime,nolock,intr,tcp,actimeo=1800 0 0" >> /etc/fstab
 
 # Setup call to omnipresence to register new users; update old
 RUN echo "presence" >> /etc/bash.bashrc

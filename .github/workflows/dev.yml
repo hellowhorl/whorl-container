@@ -1,8 +1,10 @@
 name: Create world image
 on:
   push:
-    branches: ["main"]
-    tags-ignore: ['*.*.*']
+    branches:
+        - "!main"
+    tags:
+        - '*.*.*'
 
 jobs:
   build-world:

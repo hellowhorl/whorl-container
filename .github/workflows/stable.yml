@@ -20,5 +20,5 @@ jobs:
       - name: Publish image
         run: |
           IMAGE_ID=ghcr.io/${{ github.repository_owner }}/world
-          docker tag venture:api-container $IMAGE_ID:${{ github.ref_name }}
+          docker tag world:${{ github.ref_name}} $IMAGE_ID:${{ github.ref_name }}
           docker push $IMAGE_ID:${{ github.ref_name }}

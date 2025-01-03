@@ -1,7 +1,7 @@
 name: Create world image
 on:
   push:
-    tag: "[0-9]+.[0-9]+.[0-9]+"
+    tag: ["*.*.*", "!dev-*.*.*"]
 
 jobs:
   build-world:

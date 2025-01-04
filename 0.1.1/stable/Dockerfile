@@ -43,19 +43,19 @@ RUN python -m pip install \
   gatorgrader \
   python-dotenv --break-system-packages
 
-# Create a new cli directory, change into it, initialize a new repo, and add a new remote named "origin" with the URL of the "api-services" repository
+# Clone the client libraries and install at root level, system-wide
 RUN git clone https://github.com/hellowhorl/whorl-client
 
 RUN cd whorl-client && python -m pip install . --break-system-packages
 
-# Define an argument for the GitHub CDN URL (world-container)
+# Define an argument for the GitHub CDN URL for later scripts
 ARG GITHUB_CDN=https://raw.githubusercontent.com/hellowhorl/whorl-container/main
 
 # Download a script from the GitHub CDN and append it to the bashrc file, download and execute a script from the GitHub CDN
 RUN curl -fsSL $GITHUB_CDN/scripts/direvents.sh | cat >> /etc/bash.bashrc
 RUN curl -fsSL $GITHUB_CDN/scripts/gginstall.sh | sh
 
-# Install and setup 
+# Install and setup KRB5 ticketing system; TODO: automate ticket stuff (seems implausible)
 RUN sudo -E apt -y -qq install krb5-user
 RUN curl -fsSL $GITHUB_CDN/scripts/krb5.conf | cat > /etc/krb5.conf
 

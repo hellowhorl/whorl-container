@@ -13,12 +13,13 @@ jobs:
       - uses: actions/checkout@v3
       - name: Build image
         run: |
-          cd ${{ github.ref }}
-          docker build -f Dockerfile . -t world:${{ github.ref }}-dev
+          FOLDER_NAME=$(echo ${{ github.ref_name}} | sed 's/\|dev-//')
+          cd ${{ FOLDER_NAME }}
+          docker build -f Dockerfile . -t world:${{ github.ref_name }}
       - name: Log in to container registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
       - name: Publish image
         run: |
           IMAGE_ID=ghcr.io/${{ github.repository_owner }}/world
-          docker tag venture:api-container $IMAGE_ID:${{ github.ref }}-dev
-          docker push $IMAGE_ID:${{ github.ref }}-dev
+          docker tag world:${{ github.ref_name}} $IMAGE_ID:${{ github.ref_name }}
+          docker push $IMAGE_ID:${{ github.ref_name }}

@@ -1,13 +1,16 @@
 # Use the official Ubuntu image as the base image
 FROM mcr.microsoft.com/devcontainers/python:3.12-bookworm
 
+# Create build argument for NFS_DEST
+ARG NFS_DEST="universe-a"
+
 # Set the DEBIAN_FRONTEND environment variable to noninteractive to disable interactive prompts during package installation
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Set environment variables for API host, port values
 ENV API_HOST=""
 ENV API_PORT=""
-ENV NFS_DEST=""
+ENV NFS_DEST=$NFS_DEST
 
 # Set the system timezone to America/New_York
 RUN echo "America/New_York" > /etc/timezone

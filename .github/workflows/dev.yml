@@ -15,7 +15,7 @@ jobs:
         run: |
           FOLDER_NAME=$(echo "${{ github.ref_name }}" | sed 's/\|dev-//')
           cd $FOLDER_NAME
-          docker build -f Dockerfile . -t world:${{ github.ref_name }}
+          docker build -f Dockerfile . --build-arg NFS_DEST="universe-dev" -t world:${{ github.ref_name }}
       - name: Log in to container registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
       - name: Publish image

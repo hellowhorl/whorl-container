@@ -67,7 +67,7 @@ RUN sudo mkdir /universe
 RUN sudo mkdir -p /run/sendsigs.omit.d
 
 # Create reference to NFS mount for persistent world
-RUN sudo echo '"warehouse.chompe.rs:/mounts/$NFS_DEST /universe nfs auto,nofail,noatime,nolock,intr,tcp,actimeo=1800 0 0" >> /etc/fstab' >> /etc/bash.bashrc
+RUN sudo echo "sudo echo 'warehouse.chompe.rs:/mounts/$NFS_DEST /universe nfs auto,nofail,noatime,nolock,intr,tcp,actimeo=1800 0 0' >> /etc/fstab" >> /etc/bash.bashrc
 
 # Setup call to omnipresence to register new users; update old
 RUN echo "presence" >> /etc/bash.bashrc

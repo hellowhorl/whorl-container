@@ -7,6 +7,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Set environment variables for API host, port values
 ENV API_HOST=""
 ENV API_PORT=""
+ENV NFS_DEST=""
 
 # Set the system timezone to America/New_York
 RUN echo "America/New_York" > /etc/timezone

@@ -78,3 +78,4 @@ RUN chmod +x entrypoint.sh
 
 # Set the "entrypoint.sh" script as the entrypoint of the container (this script will be executed when a container is run from the image)
 ENTRYPOINT /entrypoint.sh
+

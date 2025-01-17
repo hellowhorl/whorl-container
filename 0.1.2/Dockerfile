@@ -75,6 +75,9 @@ RUN sudo echo "warehouse.chompe.rs:/mounts/$NFS_DEST /universe nfs auto,nofail,n
 # Setup call to omnipresence to register new users; update old
 RUN echo "presence" >> /etc/bash.bashrc
 
+# Create .gatorgrade.yml call as alias
+RUN echo "alias gatorgrade='gatorgrade --config .gatorgrade.yml'"
+
 # Setup Python not to write __pycache__
 RUN export PYTHONDONTWRITEBYTECODE=1
 
